@@ -1,11 +1,21 @@
-// const person = require('./person')
+const http = require("http");
+const path = require("path");
+const fs = require("fs");
 
-// const person1 = new person('Atul Jha',22)
-// person1.greetings()
+const server = http.createServer((req, res) => {
+  /**
+   * The thing over here is that use
+   * -> npm run dev
+   * to know what dev is go to package.json and in scripts you will see "dev": "nodemon index"
+   * nodemon refresher the server with every small change made and saved else with node you would need to restart the server
+   *
+   */
+  if (req.url == "/") {
+    res.writeHead(200, { "Content-Type": "text/html" });
+    res.end("<h1>Home </h1>");
+  }
+});
 
-const Logger = require("./logger");
-const logger = new Logger();
+const PORT = process.env.PORT || 5000;
 
-logger.on("message", (data) => console.log("Called Listener:", data));
-
-logger.log("Hello World!");
+server.listen(PORT, () => console.log(`Server running on ${PORT}`));
