@@ -1,2 +1,4 @@
 const person = require('./person')
-console.log(person)
+
+const person1 = new person('Atul Jha',22)
+person1.greetings()
